@@ -1,0 +1,70 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.03vh 1vw;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 5vh;  
+	color: #FFFFFF;
+	background-color: #000000;
+	font-size: 1.1vw;
+	font-family: Lato;
+	text-decoration: none;
+	border: .15vw solid #FFFFFF;
+	border-radius: 1vw;
+	
+	z-index: 1;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.btnD{
+	display: inline-block;
+	padding: 0.03vh 1vw;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 5vh;  
+	color: #000000;
+	background-color: #FFFFFF;
+	font-size: 1.1vw;
+	font-family: Lato;
+	text-decoration: none;
+	border: .15vw solid #000000;
+	border-radius: 1vw;
+	
+	z-index: 1;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.btn:hover{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.btnD:hover{
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+
+
+span {
+	display: inline-block;
+	z-index: 1;
+	padding: 0.03vh 1vw;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 1.1vw;
+	font-family: Lato;
+	text-decoration: none;
+}
+
+canvas {
+  display: block;
+}
+
