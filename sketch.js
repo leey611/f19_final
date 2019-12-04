@@ -182,7 +182,7 @@ function drawCircle() {
   background(canvasColor);
   fill(strokeColor);
   var vol = mic.getLevel();
-  ellipse(width/2, height/2, vol*height, vol*height);
+  ellipse(width/2, height/2, vol*height*10, vol*height*10);
   //console.log(vol);
 }
 
