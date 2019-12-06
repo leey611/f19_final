@@ -1,11 +1,12 @@
 var rBtn = document.getElementById('myBtn');
 var modeBtn = document.getElementById('modeBtn');
 var dayNightBtn = document.getElementById('dayNightBtn');
-//var mybuttons = document.querySelectorAll(".btn");
+var mybuttons = document.querySelectorAll(".btn");
+
 
 var state = 0;
-var visualMode = 0;
-var dayNightState;
+var visualMode;
+var dayNightState ;
 var mic;
 var recorder;
 var recordButton;
@@ -14,10 +15,11 @@ var amp;
 var noiseHistory = [];
 var noiseHistoryCircle = [];
 var historyBlub = [];
+var noiseHistoryDot = [];
 
 var myStrokeWeight = 1;
-var canvasColor = 0;
-var strokeColor = 255;
+var canvasColor;
+var strokeColor;
 //var userVoice;
 //function touchStarted() { getAudioContext().resume(); } 
 
@@ -47,12 +49,48 @@ function setup(){
    });
   
 
+  visualMode = getItem('visualMode', visualMode);
+  if (visualMode === null || visualMode === undefined) {
+    visualMode = 0;
+  }
+  console.log("visualMode " + visualMode);
+
   dayNightState = getItem('dayNightState');
-  if (dayNightState === null) {
+  console.log(dayNightState);
+  if (dayNightState === null || dayNightState === undefined) {
     dayNightState = false;
+  } else {
+    if (dayNightState === "true" ) {
+      dayNightState = true;
+      canvasColor = 0;
+
+    } else if (dayNightState === "false") {
+      dayNightState = false;
+      canvasColor = 255;
+      
+    }
   }
 
-  // recordButton.mousePressed(changeState);
+
+  if (dayNightState === false) {
+    dayNightBtn.innerHTML = 'NIGHT';
+     for(var i = 0; i < mybuttons.length; i++){
+      mybuttons[i].classList.add('btnD');
+    }
+  }else{
+    dayNightBtn.innerHTML = 'DAY';
+  }
+
+  canvasColor = getItem('canvasColor');
+  if (canvasColor === null || canvasColor === undefined) {
+    canvasColor = 0;
+  }
+
+  strokeColor = getItem('strokeColor');
+  if (strokeColor === null || strokeColor === undefined) {
+    strokeColor = 0;
+  }
+
   noiseHistory = getItem('userVoice');
   if (noiseHistory === null) {
      noiseHistory = '';
@@ -63,10 +101,16 @@ function setup(){
     noiseHistoryCircle = '';
    }
 
-   // historyBlub = getItem('userVoiceBlub');
-   // if (historyBlub === null) {
-   //  historyBlub = '';
-   // }
+   historyBlub = getItem('userVoiceBlub');
+   console.log(historyBlub);
+   if (historyBlub === "") {
+    historyBlub = [];
+   }
+
+   noiseHistoryDot = getItem('userVoiceDot');
+   if (noiseHistoryDot === '') {
+    noiseHistoryDot = [];
+   }
    mic.start();
 }
 
@@ -81,6 +125,8 @@ function draw(){
     drawCircle2();
   } else if (visualMode === 3) {
     drawBlub();
+  } else if (visualMode === 4) {
+    drawDot();
   }
   
   //drawBlub();
@@ -89,13 +135,11 @@ function draw(){
   
   storeItem('userVoice', noiseHistory);
   storeItem('userVoiceCirle', noiseHistoryCircle);
-  // storeItem('userVoiceBlub', historyBlub);
+  storeItem('userVoiceBlub', historyBlub);
   storeItem('dayNightState', dayNightState);
+  storeItem('userVoiceDot', noiseHistoryDot);
   //console.log(vol);
-
-  
-  
-
+  storeItem('visualMode', visualMode);
 
 }
 
@@ -104,15 +148,12 @@ function changeState() {
 
   if(state === 1 && mic.enabled) {
     recorder.record(soundFile);
-    // recordButton.html('stop');
     rBtn.innerHTML = 'STOP';
   } else if (state === 2) {
     recorder.stop();
-    // recordButton.html('download');
     rBtn.innerHTML = 'DOWNLOAD';
   } else if (state === 3) {
     saveSound(soundFile, 'mySound.wav');
-    // recordButton.html('record');
     rBtn.innerHTML = 'RECORD';
   }
 
@@ -123,36 +164,46 @@ function changeState() {
 
 function changeVisual() {
   visualMode++;
-  if(visualMode > 3){
+  if(visualMode > 4){
     visualMode = 0;
   }
 }
 
 function changeDayNight() {
-
+  console.log("hi");
   dayNightState =!dayNightState;
-  var mybuttons = document.querySelectorAll(".btn");
+  // var mybuttons = document.querySelectorAll(".btn");
 
-  if(dayNightState) {
+  if(dayNightState) { //dayNightState === true = nightMode!
+    console.log("hihi");
     canvasColor = 0;
     strokeColor = 255
     dayNightBtn.innerHTML = 'DAY';
     for(var i = 0; i < mybuttons.length; i++){
       /* night mode*/
+      
+      // mybuttons[i].setAttribute("style", "background-color: #000000;");
+      // mybuttons[i].setAttribute("style", "color: #FFFFFF;");
       mybuttons[i].classList.remove('btnD');
-      // mybuttons[i].classList.add('btn');
+      mybuttons[i].classList.add('btn');
     }
     
-  } else {
+  } else { //dayNightState === false = dayMode!
+    console.log("ya");
     canvasColor = 255;
     strokeColor = 0;
     dayNightBtn.innerHTML = 'NIGHT';
     for(var i = 0; i < mybuttons.length; i++){
       /* day mode */
+      
+      // mybuttons[i].setAttribute("style", "background-color: #FFFFFF;");
+      // mybuttons[i].setAttribute("style", "color: #000000;");
       mybuttons[i].classList.add('btnD');
     }
   }
   storeItem('dayNightState', dayNightState);
+  storeItem('canvasColor', canvasColor);
+  storeItem('strokeColor', strokeColor);
 }
 
 
@@ -175,7 +226,6 @@ function drawLine() {
       }
   }
   endShape();
-
 }
 
 function drawCircle() {
@@ -215,7 +265,9 @@ function drawBlub() {
   strokeWeight(myStrokeWeight2);
   translate(width/2, height/2);
   var vol = mic.getLevel();
+  console.log(historyBlub);
   historyBlub.push(vol);
+  // console.log(historyBlub);
   beginShape();
     for (var i = 0; i < 360; i++){
       stroke(strokeColor);
@@ -233,8 +285,29 @@ function drawBlub() {
   
 }
 
+function drawDot() {
+  background(canvasColor);
+  myStrokeWeight2 = map(myStrokeWeight, 0, mouseY, 1, 15);
+  strokeWeight(1);
+  var vol = mic.getLevel();
+  noiseHistoryDot.push(vol);
+  beginShape();
+    for (var i = 0; i < noiseHistoryDot.length; i++){
+      stroke(strokeColor);
+      noFill();
+      var y = map(noiseHistoryDot[i], 0, 1, height/2, 0);
+      i++;
+      point(i, y);
+      
+      if (noiseHistoryDot.length > width/2) {
+        noiseHistoryDot.splice(0, 1);
+      }
+  }
+  endShape();
+}
 
-console.log(state);
+
+// console.log(state);
 // function toggleRecord(){
 //   mic.start();
 // }

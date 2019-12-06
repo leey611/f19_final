@@ -5,7 +5,8 @@ html, body {
 
 .btn {
 	display: inline-block;
-	padding: 0.03vh 1vw;
+	padding: 0.03vh 0.5vw;
+	margin: 1vh 0 0 1vw;
 	text-align: center;
 	vertical-align: middle;
 	line-height: 5vh;  
