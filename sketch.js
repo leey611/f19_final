@@ -128,10 +128,25 @@ function draw(){
   } else if (visualMode === 4) {
     drawDot();
   }
+
+  var emojiMoon = document.getElementById('emojiMoon');
+  if (visualMode === 3 && historyBlub.length >= 360 && dayNightState === true) {
+    emojiMoon.style.opacity = 1;
+  } else {
+    emojiMoon.style.opacity = 0;
+  }
+
+  var emojiSun = document.getElementById('emojiSun');
+  if (visualMode === 3 && historyBlub.length >= 360 && dayNightState === false) {
+    emojiSun.style.opacity = 1;
+  } else {
+    emojiSun.style.opacity = 0;
+  }
+
   
   //drawBlub();
   //drawCircle2();
-
+  //aFace();
   
   storeItem('userVoice', noiseHistory);
   storeItem('userVoiceCirle', noiseHistoryCircle);
@@ -265,7 +280,7 @@ function drawBlub() {
   strokeWeight(myStrokeWeight2);
   translate(width/2, height/2);
   var vol = mic.getLevel();
-  console.log(historyBlub);
+  //console.log(historyBlub);
   historyBlub.push(vol);
   // console.log(historyBlub);
   beginShape();
@@ -280,10 +295,17 @@ function drawBlub() {
       if (historyBlub.length > 360) {
         historyBlub.splice(0, 1);
       }
+
+      // if (historyBlub.length >= 360) {
+      //   aFace();
+      // }
   }
   endShape();
   
 }
+
+
+
 
 function drawDot() {
   background(canvasColor);
@@ -305,6 +327,30 @@ function drawDot() {
   }
   endShape();
 }
+
+//function aFace() {
+  //if (historyBlub.length >= 360) {
+   //  console.log("faceFunction");
+   // var aEmoji = document.getElementById('emojiContainer');
+   // var emojiCode = [127770];
+   // aEmoji.innerHTML = "&#" + emojiCode[0] + ";" + "sometext";
+   // aEmoji.style.color = "red";
+   // aEmoji.style.fontSize = 100 + "px";
+   // aEmoji.style.zIndex = 10;
+   // aEmoji.style.position = "absolute";
+   // aEmoji.style.transform = "translate(-50%, -50%);";
+   // aEmoji.style.top = 50 + "%";
+   // aEmoji.style.left = 50 + "%";
+   //}
+  // push();
+  // fill(255, 0, 0);
+  // ellipse(0, 0, 50, 50);
+  // pop();
+  
+  //console.log("aFace");
+//}
+
+// aFace();
 
 
 // console.log(state);

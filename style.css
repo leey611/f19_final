@@ -52,6 +52,51 @@ html, body {
 	background-color: #000000;
 }
 
+#emojiContainer {
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+	color: #eb4034;
+	font-size: 200px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation-name: spin;
+ 	animation-duration: 5000ms;
+  	animation-iteration-count: infinite;
+  	animation-timing-function: linear;
+  	/*border: red solid 2px;*/
+}
+
+#emojiMoon {
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+	color: #eb4034;
+	font-size: 195px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	/*transition: opacity .5s*/
+	/*display: none;*/
+	/*border: blue solid 2px;*/
+}
+
+#emojiSun {
+	position: absolute;
+	text-align: center;
+	vertical-align: middle;
+	color: #eb4034;
+	font-size: 190px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	/*transition: opacity .5s*/
+	/*display: none;*/
+}
+
 
 
 span {
@@ -67,5 +112,14 @@ span {
 
 canvas {
   display: block;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(360deg);
+    }
+    to {
+        transform:rotate(0deg);
+    }
 }
 
