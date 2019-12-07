@@ -78,7 +78,8 @@ html, body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	opacity: 0;
-	/*transition: opacity .5s*/
+	/*transition: opacity .5s;
+	transition-timing-function: ease-in;*/
 	/*display: none;*/
 	/*border: blue solid 2px;*/
 }
@@ -93,7 +94,8 @@ html, body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	opacity: 0;
-	/*transition: opacity .5s*/
+	/*transition: opacity .5s;
+	transition-timing-function: ease-in;*/
 	/*display: none;*/
 }
 

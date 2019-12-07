@@ -1,8 +1,11 @@
 var rBtn = document.getElementById('myBtn');
+var shotBtn = document.getElementById('shotBtn');
 var modeBtn = document.getElementById('modeBtn');
 var dayNightBtn = document.getElementById('dayNightBtn');
 var mybuttons = document.querySelectorAll(".btn");
 
+
+var cnv;
 
 var state = 0;
 var visualMode;
@@ -20,15 +23,23 @@ var noiseHistoryDot = [];
 var myStrokeWeight = 1;
 var canvasColor;
 var strokeColor;
+
+var zoom = 1.00;
+var zMin = 0.05;
+var zMax = 9.00;
+var sensativity = 0.005;
+
+
 //var userVoice;
 //function touchStarted() { getAudioContext().resume(); } 
 
 rBtn.addEventListener("click", changeState);
+shotBtn.addEventListener("click", screenshotCanvas);
 modeBtn.addEventListener("click", changeVisual);
 dayNightBtn.addEventListener("click", changeDayNight);
 
 function setup(){
-  var cnv = createCanvas(windowWidth, windowHeight);
+  cnv = createCanvas(windowWidth, windowHeight);
     cnv.id('mycanvas');
     cnv.style('position', 'absolute');
     cnv.style('transform', 'translate(-50%, -50%)');
@@ -39,6 +50,8 @@ function setup(){
   //   recordButton.id('recordButton');
   angleMode(DEGREES);
   
+
+
   mic = new p5.AudioIn();
   recorder = new p5.SoundRecorder();
   recorder.setInput(mic);
@@ -143,7 +156,7 @@ function draw(){
     emojiSun.style.opacity = 0;
   }
 
-  
+   
   //drawBlub();
   //drawCircle2();
   //aFace();
@@ -182,6 +195,9 @@ function changeVisual() {
   if(visualMode > 4){
     visualMode = 0;
   }
+
+  zoom = 1;
+
 }
 
 function changeDayNight() {
@@ -224,6 +240,8 @@ function changeDayNight() {
 
 function drawLine() {
   background(canvasColor);
+  translate(0, -height/2);
+  scale(zoom); 
   myStrokeWeight2 = map(myStrokeWeight, 0, mouseY, 1, 15);
   strokeWeight(myStrokeWeight2);
   var vol = mic.getLevel();
@@ -232,7 +250,7 @@ function drawLine() {
     for (var i = 0; i < noiseHistory.length; i++){
       stroke(strokeColor);
       noFill();
-      var y = map(noiseHistory[i], 0, 1, height/2, 0);
+      var y = map(noiseHistory[i], 0, 1, height, 0);
       i++;
       vertex(i, y);
       
@@ -245,15 +263,19 @@ function drawLine() {
 
 function drawCircle() {
   background(canvasColor);
+  translate(width/2, height/2)
+  scale(zoom);
   fill(strokeColor);
   var vol = mic.getLevel();
-  ellipse(width/2, height/2, vol*height*10, vol*height*10);
+  ellipse(0, 0, vol*height, vol*height);
   //console.log(vol);
 }
 
 
 function drawCircle2() {
   background(canvasColor);
+  translate(width/2, 0);
+  scale(zoom); 
   myStrokeWeight2 = map(myStrokeWeight, 0, mouseY, 1, 15);
   strokeWeight(myStrokeWeight2);
   var vol = mic.getLevel();
@@ -265,7 +287,7 @@ function drawCircle2() {
       var y = map(noiseHistoryCircle[i], 0, 1, height/2, 0);
       i++;
       //vertex(i, y);
-      ellipse(width/2, y, i*25, i*25);
+      ellipse(0, y, i*25, i*25);
     
       if (noiseHistoryCircle.length > width/25) {
         noiseHistoryCircle.splice(0, 1);
@@ -279,6 +301,7 @@ function drawBlub() {
   myStrokeWeight2 = map(myStrokeWeight, 0, mouseY, 1, 15);
   strokeWeight(myStrokeWeight2);
   translate(width/2, height/2);
+  scale(zoom); 
   var vol = mic.getLevel();
   //console.log(historyBlub);
   historyBlub.push(vol);
@@ -305,10 +328,10 @@ function drawBlub() {
 }
 
 
-
-
 function drawDot() {
   background(canvasColor);
+  translate(0, -height/2);
+  scale(zoom); 
   myStrokeWeight2 = map(myStrokeWeight, 0, mouseY, 1, 15);
   strokeWeight(1);
   var vol = mic.getLevel();
@@ -317,7 +340,7 @@ function drawDot() {
     for (var i = 0; i < noiseHistoryDot.length; i++){
       stroke(strokeColor);
       noFill();
-      var y = map(noiseHistoryDot[i], 0, 1, height/2, 0);
+      var y = map(noiseHistoryDot[i], 0, 1, height, 0);
       i++;
       point(i, y);
       
@@ -327,6 +350,19 @@ function drawDot() {
   }
   endShape();
 }
+
+function screenshotCanvas() {
+  saveCanvas(cnv, 'myCanvas');
+}
+
+
+function mouseWheel(event) {
+  zoom += sensativity * event.delta;
+  zoom = constrain(zoom, zMin, zMax);
+  //uncomment to block page scrolling
+  return false;
+}
+
 
 //function aFace() {
   //if (historyBlub.length >= 360) {
