@@ -19,6 +19,7 @@ var noiseHistory = [];
 var noiseHistoryCircle = [];
 var historyBlub = [];
 var noiseHistoryDot = [];
+var stringHistory = [];
 
 var myStrokeWeight = 1;
 var canvasColor;
@@ -29,6 +30,8 @@ var zMin = 0.05;
 var zMax = 9.00;
 var sensativity = 0.005;
 
+var speechRec;
+
 
 //var userVoice;
 //function touchStarted() { getAudioContext().resume(); } 
@@ -37,6 +40,11 @@ rBtn.addEventListener("click", changeState);
 shotBtn.addEventListener("click", screenshotCanvas);
 modeBtn.addEventListener("click", changeVisual);
 dayNightBtn.addEventListener("click", changeDayNight);
+
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 
 function setup(){
   cnv = createCanvas(windowWidth, windowHeight);
@@ -49,8 +57,8 @@ function setup(){
   // recordButton = createButton('record');
   //   recordButton.id('recordButton');
   angleMode(DEGREES);
+  textAlign(CENTER);
   
-
 
   mic = new p5.AudioIn();
   recorder = new p5.SoundRecorder();
@@ -124,7 +132,19 @@ function setup(){
    if (noiseHistoryDot === '') {
     noiseHistoryDot = [];
    }
+
+   // stringHistory = getItem('storeString');
+   // if (stringHistory === null || stringHistory === '') {
+   //  stringHistory === '';
+   // }
+
    mic.start();
+
+   var lang = navigator.language || 'en-US';
+   var continuous = true;
+   var interim = true;
+   speechRec = new p5.SpeechRec(lang, gotSpeech);
+   speechRec.start(continuous, interim);
 }
 
 function draw(){
@@ -140,6 +160,8 @@ function draw(){
     drawBlub();
   } else if (visualMode === 4) {
     drawDot();
+  } else if (visualMode === 5) {
+    gotSpeech();
   }
 
   var emojiMoon = document.getElementById('emojiMoon');
@@ -166,6 +188,7 @@ function draw(){
   storeItem('userVoiceBlub', historyBlub);
   storeItem('dayNightState', dayNightState);
   storeItem('userVoiceDot', noiseHistoryDot);
+  //storeItem('storeString', stringHistory);
   //console.log(vol);
   storeItem('visualMode', visualMode);
 
@@ -192,7 +215,7 @@ function changeState() {
 
 function changeVisual() {
   visualMode++;
-  if(visualMode > 4){
+  if(visualMode > 5){
     visualMode = 0;
   }
 
@@ -351,6 +374,29 @@ function drawDot() {
   endShape();
 }
 
+function gotSpeech() {
+  background(canvasColor);
+  textSize(32);
+  fill(strokeColor);
+  text("Speak (in English)!", width/2, height/3);
+  //console.log(speechRec.resultValue);
+  //console.log(speechRec.resultString);
+
+   if (speechRec.resultValue) {
+  //   stringHistory.push(speechRec.resultString);
+     console.log(speechRec.resultString);
+     console.log("speech js");
+     text(speechRec.resultString, width/2, height/2);
+   }
+
+  //if (stringHistory.length > 10) {
+    //stringHistory.splice(0, 1);
+  //}
+  //fill(strokeColor);
+  //text(speechRec.resultString, width/2, height/2);
+  //text(speechRec.resultString, width/2, height/2);
+}
+
 function screenshotCanvas() {
   saveCanvas(cnv, 'myCanvas');
 }
@@ -364,40 +410,3 @@ function mouseWheel(event) {
 }
 
 
-//function aFace() {
-  //if (historyBlub.length >= 360) {
-   //  console.log("faceFunction");
-   // var aEmoji = document.getElementById('emojiContainer');
-   // var emojiCode = [127770];
-   // aEmoji.innerHTML = "&#" + emojiCode[0] + ";" + "sometext";
-   // aEmoji.style.color = "red";
-   // aEmoji.style.fontSize = 100 + "px";
-   // aEmoji.style.zIndex = 10;
-   // aEmoji.style.position = "absolute";
-   // aEmoji.style.transform = "translate(-50%, -50%);";
-   // aEmoji.style.top = 50 + "%";
-   // aEmoji.style.left = 50 + "%";
-   //}
-  // push();
-  // fill(255, 0, 0);
-  // ellipse(0, 0, 50, 50);
-  // pop();
-  
-  //console.log("aFace");
-//}
-
-// aFace();
-
-
-// console.log(state);
-// function toggleRecord(){
-//   mic.start();
-// }
-
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-// }
-
-//function keyPressed(){
-  // storeItem('userVoice', noiseHistory);
-//}
