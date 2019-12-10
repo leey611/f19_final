@@ -121,12 +121,12 @@ function setup(){
 
   noiseHistory = getItem('userVoice');
   if (noiseHistory === null || noiseHistory === '') {
-     noiseHistory = '';
+     noiseHistory = "";
    }
 
   noiseHistoryCircle = getItem('userVoiceCirle');
-  if (noiseHistoryCircle === null) {
-    noiseHistoryCircle = '';
+  if (noiseHistoryCircle === null || noiseHistoryCircle === '') {
+    noiseHistoryCircle = "";
   }
 
   historyBlub = getItem('userVoiceBlub');
