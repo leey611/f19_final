@@ -120,7 +120,7 @@ function setup(){
   }
 
   noiseHistory = getItem('userVoice');
-  if (noiseHistory === null) {
+  if (noiseHistory === null || noiseHistory === '') {
      noiseHistory = '';
    }
 
@@ -136,7 +136,7 @@ function setup(){
   }
 
   noiseHistoryDot = getItem('userVoiceDot');
-  if (noiseHistoryDot === '') {
+  if (noiseHistoryDot === '' || noiseHistoryDot === null) {
     noiseHistoryDot = [];
   }
 
