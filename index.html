@@ -8,17 +8,27 @@
 
   </head>
   <body>
-  	<div class="btn" id="myBtn">RECORD</div>
-    <div class="btn" id="shotBtn">SHOT</div>
-    <div class="btn" id="modeBtn">MODE</div>
-    <div class="btn" id="dayNightBtn">DAY</div>
+    <div class="btnRow">
+  	 <div class="btn" id="myBtn">RECORD</div>
+      <div class="btn" id="shotBtn">SHOT</div>
+      <div class="btn" id="modeBtn">MODE</div>
+      <div class="btn" id="dayNightBtn">DAY</div>
+    </div>
+
+    <div class="voiceLevelRow">
+      <div class="voiceLevel"></div>
+      <div class="voiceLevelBar"></div>
+    </div> 
 
     <div id="emojiContainer">
       <div id="emojiMoon">&#127770;</div>
       <div id="emojiSun">&#127773;</div>
     </div>
 
+    <p id="myString" style="display: none;"></p>
+
     <script src="sketch.js"></script>
+    <script src="storageAvailable.js"></script>
 	
   
 
