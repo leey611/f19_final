@@ -500,13 +500,13 @@ function keyPressed() {
 
 function hideSth() {
   myBtnRow.style.opacity = 0;
-  voiceLevelRow.style.opacity = 0;
+  // voiceLevelRow.style.opacity = 0;
 }
 
 var x;
 document.addEventListener("mousemove", function() {
   myBtnRow.style.opacity = 1;
-  voiceLevelRow.style.opacity = .5;
+  // voiceLevelRow.style.opacity = .5;
 
   if (x) {
     clearTimeout(x);
