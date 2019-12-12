@@ -87,14 +87,14 @@ function setup(){
     dayNightState = true;
     canvasColor = 0;
   } else {
-    if (dayNightState === "true" ) {
+    if (dayNightState === "true" || dayNightState === true) {
       dayNightState = true;
       canvasColor = 0;
-
-    } else if (dayNightState === "false") {
+      strokeColor = 255;
+    } else if (dayNightState === "false" || dayNightState === false) {
       dayNightState = false;
       canvasColor = 255;
-      
+      strokeColor = 0;
     }
   }
 
