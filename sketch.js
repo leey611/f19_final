@@ -131,7 +131,7 @@ function setup(){
   }
 
   historyBlub = getItem('userVoiceBlub');
-  console.log(historyBlub);
+  // console.log(historyBlub);
   if (historyBlub === null || historyBlub === '') {
     historyBlub = [];
   }
