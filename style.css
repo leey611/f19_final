@@ -15,9 +15,7 @@ html, body {
 	/*border: red solid 2px;*/
 }
 
-/*.btnRow:hover{
-	left: 0;
-}*/
+
 
 .btn {
 	display: inline-block;
@@ -60,7 +58,7 @@ html, body {
 	transition: all 0.2s;
 }
 
-.btn:hover{
+/*.btn:hover{
 	color: #000000;
 	background-color: #FFFFFF;
 }
@@ -68,12 +66,9 @@ html, body {
 .btnD:hover{
 	color: #FFFFFF;
 	background-color: #000000;
-}
-
-/*#slide {
-
-	background-color: red;
 }*/
+
+
 
 .voiceLevelRow {
 	display: inline-block;
