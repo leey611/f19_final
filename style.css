@@ -60,15 +60,15 @@ html, body {
 	transition: all 0.2s;
 }
 
-/*.btn:hover{
+.btn:active{
 	color: #000000;
 	background-color: #FFFFFF;
 }
 
-.btnD:hover{
+.btnD:active{
 	color: #FFFFFF;
 	background-color: #000000;
-}*/
+}
 
 #slide {
 	width: 5px;
