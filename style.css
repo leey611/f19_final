@@ -60,12 +60,12 @@ html, body {
 	transition: all 0.2s;
 }
 
-.btn:active{
+.btn:hover{
 	color: #000000;
 	background-color: #FFFFFF;
 }
 
-.btnD:active{
+.btnD:hover{
 	color: #FFFFFF;
 	background-color: #000000;
 }
