@@ -101,10 +101,12 @@ function setup(){
 
   if (dayNightState === false) {
     dayNightBtn.innerHTML = 'NIGHT';
+    canvasColor = 255;
+    strokeColor = 0;
      for(var i = 0; i < mybuttons.length; i++){
       mybuttons[i].classList.add('btnD');
       voiceLevel.classList.add('voiceLevelD');
-      voiceLevelBar.classList.add('voiceLevelBarD')
+      voiceLevelBar.classList.add('voiceLevelBarD');
     }
   }else{
     dayNightBtn.innerHTML = 'DAY';
@@ -117,7 +119,7 @@ function setup(){
 
   strokeColor = getItem('strokeColor');
   if (strokeColor === null || strokeColor === undefined) {
-    strokeColor = 0;
+    strokeColor = 255;
   }
 
   noiseHistory = getItem('userVoice');
