@@ -85,7 +85,7 @@ function setup(){
   console.log(dayNightState);
   if (dayNightState === null || dayNightState === undefined) {
     dayNightState = true;
-    // canvasColor = 0;
+    canvasColor = 0;
   } else {
     if (dayNightState === "true" ) {
       dayNightState = true;
