@@ -110,6 +110,8 @@ function setup(){
     }
   }else{
     dayNightBtn.innerHTML = 'DAY';
+    canvasColor = 0;
+    strokeColor = 255;
   }
 
   canvasColor = getItem('canvasColor');
