@@ -84,7 +84,8 @@ function setup(){
   dayNightState = getItem('dayNightState');
   console.log(dayNightState);
   if (dayNightState === null || dayNightState === undefined) {
-    dayNightState = false;
+    dayNightState = true;
+    // canvasColor = 0;
   } else {
     if (dayNightState === "true" ) {
       dayNightState = true;
