@@ -194,7 +194,7 @@ canvas {
   display: block;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+/*@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   
   .btnRow {
   	opacity: 1;
@@ -228,7 +228,7 @@ canvas {
   	opacity: 1;
   }
   
-}
+}*/
 
 
 
