@@ -7,7 +7,7 @@ html, body {
 	position: absolute;
 	display: inline-block;
 	height: auto;
-	left: -38%;
+	left: 0%;
 	bottom: 2%;
 	opacity: 1;
 	transition: all 1s;
@@ -15,9 +15,9 @@ html, body {
 	/*border: red solid 2px;*/
 }
 
-.btnRow:hover{
+/*.btnRow:hover{
 	left: 0;
-}
+}*/
 
 .btn {
 	display: inline-block;
