@@ -7,7 +7,7 @@ html, body {
 	position: absolute;
 	display: inline-block;
 	height: auto;
-	left: 0%;
+	left: 0;
 	bottom: 2%;
 	opacity: 1;
 	transition: all 1s;
