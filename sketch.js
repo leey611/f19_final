@@ -522,20 +522,24 @@ function keyPressed() {
   
 }
 
-// function hideSth() {
-//   myBtnRow.style.opacity = 0;
-//   voiceLevelRow.style.opacity = 0;
-// }
+function hideSth() {
+  myBtnRow.style.opacity = 0;
+  voiceLevelRow.style.opacity = 0;
+  leftArrow.style.opacity = 0;
+  rightArrow.style.opacity = 0;
+}
 
-// var x;
-// document.addEventListener("mousemove", function() {
-//   myBtnRow.style.opacity = 1;
-//   voiceLevelRow.style.opacity = .5;
+var x;
+document.addEventListener("mousemove", function() {
+  myBtnRow.style.opacity = 1;
+  voiceLevelRow.style.opacity = .5;
+  leftArrow.style.opacity = 1;
+  rightArrow.style.opacity = 1;
 
-//   if (x) {
-//     clearTimeout(x);
-//   }
-//   x = setTimeout(hideSth, 5000);
-// })
+  if (x) {
+    clearTimeout(x);
+  }
+  x = setTimeout(hideSth, 5000);
+})
 
 

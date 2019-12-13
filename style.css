@@ -233,6 +233,7 @@ canvas {
     border-bottom: 16px solid transparent;
     
     border-right: 20px solid #FFFFFF;
+    transition: opacity 1s;
 }
 
 .arrow-leftD {
@@ -257,6 +258,7 @@ canvas {
     position: absolute;
     top: 0;
     right: 0;
+    transition: opacity 1s;
 }
 
 .arrow-rightD {
