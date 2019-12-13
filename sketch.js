@@ -524,7 +524,7 @@ function keyPressed() {
 
 function hideSth() {
   myBtnRow.style.opacity = 0;
-  voiceLevelRow.style.opacity = 0;
+  // voiceLevelRow.style.opacity = 0;
   leftArrow.style.opacity = 0;
   rightArrow.style.opacity = 0;
 }
