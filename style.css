@@ -225,7 +225,53 @@ canvas {
   
 }*/
 
+.arrow-left {
+    width: 0;
+    height: 0;
+    
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    
+    border-right: 20px solid #FFFFFF;
+}
 
+.arrow-leftD {
+    width: 0;
+    height: 0;
+    
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    
+    border-right: 20px solid #000000;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    
+    border-left: 20px solid #FFFFFF;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.arrow-rightD {
+    width: 0;
+    height: 0;
+    
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    
+    border-left: 20px solid #000000;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 @keyframes spin {
     from {

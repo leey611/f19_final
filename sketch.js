@@ -4,6 +4,8 @@ var modeBtn = document.getElementById('modeBtn');
 var dayNightBtn = document.getElementById('dayNightBtn');
 var mybuttons = document.querySelectorAll(".btn");
 var myBtnRow = document.querySelector('.btnRow');
+var leftArrow = document.querySelector('.arrow-left');
+var rightArrow = document.querySelector('.arrow-right');
 
 var voiceLevelRow = document.querySelector('.voiceLevelRow');
 var voiceLevel = document.querySelector(".voiceLevel");
@@ -45,6 +47,8 @@ rBtn.addEventListener("click", changeState);
 shotBtn.addEventListener("click", screenshotCanvas);
 modeBtn.addEventListener("click", changeVisual);
 dayNightBtn.addEventListener("click", changeDayNight);
+rightArrow.addEventListener("click", changeVisual);
+leftArrow.addEventListener("click", lastVisual);
 
 
 function windowResized() {
@@ -100,6 +104,7 @@ function setup(){
 
 
   if (dayNightState === false) {
+    leftArrow.style
     dayNightBtn.innerHTML = 'NIGHT';
     canvasColor = 255;
     strokeColor = 0;
@@ -108,6 +113,8 @@ function setup(){
       voiceLevel.classList.add('voiceLevelD');
       voiceLevelBar.classList.add('voiceLevelBarD');
     }
+    leftArrow.classList.add('arrow-leftD');
+    rightArrow.classList.add('arrow-rightD');
   }else{
     dayNightBtn.innerHTML = 'DAY';
     canvasColor = 0;
@@ -233,6 +240,15 @@ function changeVisual() {
 
 }
 
+function lastVisual() {
+  visualMode--;
+  if(visualMode < 0){
+    visualMode = 5;
+  }
+
+  zoom = 1;
+}
+
 function changeDayNight() {
   console.log("hi");
   dayNightState =!dayNightState;
@@ -253,7 +269,8 @@ function changeDayNight() {
       mybuttons[i].classList.remove('btnD');
       mybuttons[i].classList.add('btn');
     }
-    
+    leftArrow.classList.remove('arrow-leftD');
+    rightArrow.classList.remove('arrow-rightD');
   } else { //dayNightState === false = dayMode!
     console.log("ya");
     canvasColor = 255;
@@ -268,6 +285,8 @@ function changeDayNight() {
       // mybuttons[i].setAttribute("style", "color: #000000;");
       mybuttons[i].classList.add('btnD');
     }
+    leftArrow.classList.add('arrow-leftD');
+    rightArrow.classList.add('arrow-rightD');
   }
   storeItem('dayNightState', dayNightState);
   storeItem('canvasColor', canvasColor);
